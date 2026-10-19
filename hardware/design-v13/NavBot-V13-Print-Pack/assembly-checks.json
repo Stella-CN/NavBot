@@ -1,0 +1,1509 @@
+{
+  "wheel_mount": {
+    "hex_af_mm": 12.000000000000021,
+    "hex_depth_mm": 7.087490580256199,
+    "coupler_outward_shift_mm": 4.581311228334613,
+    "shaft_insertion_mm": 6.418688771665387,
+    "set_screw_x_abs_mm": 98.58131122833461,
+    "tip_clearance_mm": 0.3
+  },
+  "freecad_version": [
+    "1",
+    "1",
+    "3",
+    "20260725 (Git shallow)",
+    "Unknown",
+    "2026/07/25 04:52:02",
+    "grafted,grafted",
+    "145529fe741292ff0b3977a01195bf0247425794"
+  ],
+  "parameters": {
+    "chassis_width": 188.7401621236907,
+    "chassis_length": 214.00632477263954,
+    "chassis_bottom": 10.19979780919669,
+    "chassis_top": 110.67484219628153,
+    "chassis_split": 19.499797809196693,
+    "wall": 3.0,
+    "wheel_center_x": 114.0,
+    "wheelbase": 134.0,
+    "motor_face_x": 81.0,
+    "head_width": 196.7645121725609,
+    "head_depth": 178.29747270025055,
+    "head_height": 151.67504448708502,
+    "head_bottom": 107.1997978091967,
+    "screen_thickness": 12.0,
+    "wheel_diameter": 85.0,
+    "wheel_width": 33.43134910731001,
+    "wheel_max_diameter": 87.0,
+    "ride_height_increase": 9.324955612915154
+  },
+  "sources": [
+    {
+      "file": "智能车轮_直径65mm.stp",
+      "size_mm": [
+        66.34968439256264,
+        26.041006857710137,
+        66.34968439256265
+      ],
+      "valid": true,
+      "solids": 1
+    },
+    {
+      "file": "直流电机_MG513P10-12V(GMR）.stp",
+      "size_mm": [
+        37.60025767630404,
+        70.60000000000001,
+        37.46442614189699
+      ],
+      "valid": true,
+      "solids": 2
+    },
+    {
+      "file": "电机支架_MG513电机支架(37支架）.stp",
+      "size_mm": [
+        40.000000000000014,
+        41.000000000000014,
+        47.0
+      ],
+      "valid": true,
+      "solids": 1
+    },
+    {
+      "file": "轴直径6mm_六角联轴器.stp",
+      "size_mm": [
+        13.856406660551,
+        12.000000200000017,
+        17.80000009999975
+      ],
+      "valid": true,
+      "solids": 1
+    },
+    {
+      "file": "E351S电池(客户图）.stp",
+      "size_mm": [
+        72.59957508016318,
+        85.59915016026001,
+        42.00361071374001
+      ],
+      "valid": true,
+      "solids": 1
+    },
+    {
+      "file": "STM32主控-C30D（小车使用）.stp",
+      "size_mm": [
+        92.186265208626,
+        57.45093989724564,
+        18.65596552815804
+      ],
+      "valid": false,
+      "solids": 1
+    },
+    {
+      "file": "雷达_雷神N10.stp",
+      "size_mm": [
+        36.05000010000265,
+        70.50237700039202,
+        51.999999999994046
+      ],
+      "valid": false,
+      "solids": 1
+    },
+    {
+      "file": "Jetson_Orin_Nano_DevKit_3D_STEP_Model.zip",
+      "size_mm": [
+        103.00000019999999,
+        90.87687509999999,
+        34.76602162339139
+      ],
+      "valid": true,
+      "solids": 1393
+    },
+    {
+      "file": "智能车轮_直径85mm.stp",
+      "size_mm": [
+        84.99959561839259,
+        33.43134910731001,
+        84.99959561839299
+      ],
+      "valid": true,
+      "solids": 1
+    }
+  ],
+  "overall_LWH_mm": [
+    218.99959561839256,
+    261.503240591862,
+    298.3749558129152
+  ],
+  "front_switch": {
+    "source": "开关图纸.png",
+    "centre_xyz_mm": [
+      0,
+      105,
+      81.32495561291515
+    ],
+    "hole_diameter_mm": 12.3,
+    "thread": "M12x0.75",
+    "flange_diameter_mm": 14.5,
+    "overall_axial_mm": 24.5,
+    "connector_allowance_mm": [
+      13,
+      19
+    ],
+    "wire_allowance_mm": [
+      20,
+      20,
+      20
+    ],
+    "nut_thickness_assumed_mm": 3
+  },
+  "motor_mount_checks": [
+    {
+      "name": "RF",
+      "metal_ground_clearance_mm": 8.19979780919671,
+      "contact_distance_mm": 1.4210854715202004e-14,
+      "holes": [
+        {
+          "x": 50,
+          "y": 52,
+          "blocked_volume_mm3": 0.0
+        },
+        {
+          "x": 50,
+          "y": 82,
+          "blocked_volume_mm3": 0.0
+        },
+        {
+          "x": 74,
+          "y": 52,
+          "blocked_volume_mm3": 0.0
+        },
+        {
+          "x": 74,
+          "y": 82,
+          "blocked_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "name": "RB",
+      "metal_ground_clearance_mm": 8.199797809196681,
+      "contact_distance_mm": 1.4210854715202004e-14,
+      "holes": [
+        {
+          "x": 50,
+          "y": -82,
+          "blocked_volume_mm3": 0.0
+        },
+        {
+          "x": 50,
+          "y": -52,
+          "blocked_volume_mm3": 0.0
+        },
+        {
+          "x": 74,
+          "y": -82,
+          "blocked_volume_mm3": 0.0
+        },
+        {
+          "x": 74,
+          "y": -52,
+          "blocked_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "name": "LF",
+      "metal_ground_clearance_mm": 8.19979780919671,
+      "contact_distance_mm": 1.4210854715202004e-14,
+      "holes": [
+        {
+          "x": -50,
+          "y": 52,
+          "blocked_volume_mm3": 0.0
+        },
+        {
+          "x": -50,
+          "y": 82,
+          "blocked_volume_mm3": 0.0
+        },
+        {
+          "x": -74,
+          "y": 52,
+          "blocked_volume_mm3": 0.0
+        },
+        {
+          "x": -74,
+          "y": 82,
+          "blocked_volume_mm3": 0.0
+        }
+      ]
+    },
+    {
+      "name": "LB",
+      "metal_ground_clearance_mm": 8.199797809196681,
+      "contact_distance_mm": 1.4210854715202004e-14,
+      "holes": [
+        {
+          "x": -50,
+          "y": -82,
+          "blocked_volume_mm3": 0.0
+        },
+        {
+          "x": -50,
+          "y": -52,
+          "blocked_volume_mm3": 0.0
+        },
+        {
+          "x": -74,
+          "y": -82,
+          "blocked_volume_mm3": 0.0
+        },
+        {
+          "x": -74,
+          "y": -52,
+          "blocked_volume_mm3": 0.0
+        }
+      ]
+    }
+  ],
+  "screen_hole_axes_xz_mm": [
+    [
+      -9.9539,
+      156.6111
+    ],
+    [
+      17.011,
+      156.6111
+    ]
+  ],
+  "jetson_hole_axes_xy_mm": [
+    [
+      -46,
+      -30.562
+    ],
+    [
+      -46,
+      27.438
+    ],
+    [
+      40,
+      -30.562
+    ],
+    [
+      40,
+      27.438
+    ]
+  ],
+  "boolean_pairs_tested": 56,
+  "ground_contacts_mm": {
+    "RF_Wheel": 1.1686097468332243e-15,
+    "RB_Wheel": 1.1686097468332243e-15,
+    "LF_Wheel": 1.1686097468332243e-15,
+    "LB_Wheel": 1.1686097468332243e-15
+  },
+  "allowances_mm": {
+    "screen_thickness": 12,
+    "screen_side_plug": 18,
+    "jetson_rear_plug": 22,
+    "jetson_side_plug": 25,
+    "jetson_overhead_air": 15,
+    "c30d_overhead_wiring": 10,
+    "camera_side_plug": 25,
+    "neck_passage": [
+      28,
+      18
+    ]
+  },
+  "invalid_shapes": [
+    "C30D_actual",
+    "N10_actual"
+  ],
+  "limitations": [
+    "C30D and N10 sources are invalid; original shapes are displayed but conservative bounding boxes are checked.",
+    "Jetson uses its full box as a conservative collision proxy; actual STEP is in the assembly.",
+    "D435 is an official-dimension envelope because the supplied native SLDPRT has not been converted.",
+    "Screen and DC-DC are drawing-derived envelopes. Cable allowances are assumed, not measured connector models.",
+    "PCB adapters, lidar holes, camera retention, shell fasteners and print tolerances are prototype details, not manufacturing release.",
+    "No structural strength, thermal, mass/CG, motor-current or dynamic stability validation.",
+    "85mm wheel is the actual supplied STEP with12mm AF hex. Couplers shifted axially;6.42mm shaft insertion needs mechanical load verification.",
+    "Screen holes interpreted from supplied drawing; rear/front mirroring must be checked on physical screen.",
+    "Component withdrawal checks assume electrical disconnection; cables are not flexible-body models.",
+    "Integrated parts require print-orientation and fastener detail review. Capsule radius is inferred; verify against actual camera before final printing."
+  ],
+  "tire_to_body_lateral_gap_mm": 3.320271188621007,
+  "minimum_same_side_tire_gap_at_87mm": 47,
+  "ground_clearance_mm": 21.324955512915153,
+  "coordinate_note": "All original V04 geometry translated upward by ride_height_increase; stored original head/chassis design coordinates are before this ground-reference translation.",
+  "version": "V13",
+  "printed_count": 10,
+  "baseline_reference": "V05 wheel/coupler geometry retained; V06 checks are static interference, service volumes, printed-solid validity and sampled service paths.",
+  "material_assumption": "FDM PETG; actual filament and slicer settings pending",
+  "reinforcements": {
+    "BodyRoofAndCornerRibs": {
+      "volume_mm3": 39959.283278888484
+    },
+    "HeadHoopAndRearRibs": {
+      "volume_mm3": 13286.174439515904
+    }
+  },
+  "camera_drop_mm": 5.0,
+  "body_drop_mm": -11.125157803718459,
+  "charge_offset_mm": [
+    48.0,
+    0,
+    38.0
+  ],
+  "motor_bracket_orientation": "180 degrees about shaft axis; square flange against underside of base",
+  "printability": [
+    {
+      "part": "ChassisLower",
+      "size_mm": [
+        188.0,
+        210.0000000000002,
+        13.000000000000005
+      ],
+      "valid": true,
+      "solids": 1,
+      "fits_220": true
+    },
+    {
+      "part": "ChassisLid",
+      "size_mm": [
+        188.7401621236907,
+        214.00632477263954,
+        91.17504448708488
+      ],
+      "valid": true,
+      "solids": 1,
+      "fits_220": true
+    },
+    {
+      "part": "ChargePort_Insert_D12_placeholder",
+      "size_mm": [
+        52.0,
+        55.0,
+        40.00000000000001
+      ],
+      "valid": true,
+      "solids": 1,
+      "fits_220": true
+    },
+    {
+      "part": "ChargeCableClampCap",
+      "size_mm": [
+        20.0,
+        14.0,
+        7.000000100000001
+      ],
+      "valid": true,
+      "solids": 1,
+      "fits_220": true
+    },
+    {
+      "part": "BatteryTray_strap_slots",
+      "size_mm": [
+        138.0,
+        91.59915016026001,
+        10.999999999999998
+      ],
+      "valid": true,
+      "solids": 1,
+      "fits_220": true
+    },
+    {
+      "part": "C30D_RemovableTray",
+      "size_mm": [
+        138.0,
+        76.0,
+        58.05591183579404
+      ],
+      "valid": true,
+      "solids": 1,
+      "fits_220": true
+    },
+    {
+      "part": "DCDC_RemovableTray",
+      "size_mm": [
+        93.0,
+        52.5000001,
+        58.00000010000001
+      ],
+      "valid": true,
+      "solids": 1,
+      "fits_220": true
+    },
+    {
+      "part": "HeadFront",
+      "size_mm": [
+        178.61728097137183,
+        28.050000200000035,
+        148.74981219046043
+      ],
+      "valid": true,
+      "solids": 1,
+      "fits_220": true
+    },
+    {
+      "part": "HeadRear",
+      "size_mm": [
+        196.7645121725609,
+        172.32789654783826,
+        151.67504448708502
+      ],
+      "valid": true,
+      "solids": 1,
+      "fits_220": true
+    },
+    {
+      "part": "Jetson_RemovableTray",
+      "size_mm": [
+        111.0,
+        97.0,
+        30.300202190803304
+      ],
+      "valid": true,
+      "solids": 1,
+      "fits_220": true
+    }
+  ],
+  "head_seam": {
+    "type": "spherical split",
+    "gap_mm": 0.35,
+    "screws": 4
+  },
+  "body_connection": {
+    "screws": 6,
+    "type": "M3 through bolts and accessible hex nut ears",
+    "nut_af": 5.8,
+    "nut_recess_depth": 2
+  },
+  "head_connection": {
+    "screws": 4,
+    "alignment_pins": 2
+  },
+  "camera_aperture": {
+    "width_mm": 90.6,
+    "height_mm": 25.6,
+    "end_radius_mm": 12.8,
+    "nominal_outline_radius_mm": 12.5,
+    "nominal_per_side_clearance_mm": 0.3,
+    "rear_mount_pitch_mm": 45,
+    "max_screw_insertion_mm": 3,
+    "source": "D400 datasheet July2023 figure10-9 p146; R12.5 inferred from capsule outline"
+  },
+  "local_plug_pocket_wall_checks": [
+    {
+      "space": "Screen_PlugSpace",
+      "minimum_outer_surface_distance_mm": 4.639055687305932,
+      "outside_volume_mm3": 0.0
+    },
+    {
+      "space": "Camera_PlugSpace",
+      "minimum_outer_surface_distance_mm": 3.2569111693415738,
+      "outside_volume_mm3": 0.0
+    }
+  ],
+  "static_boolean_tests": 143,
+  "static_scope": "All physical component pairs checked in V13.",
+  "overall_mm": [
+    261.503240591862,
+    218.99959561839256,
+    294.9248423962816
+  ],
+  "charge_reference": {
+    "body_diameter": 12,
+    "body_length": 37,
+    "cable_diameter": 5,
+    "clamp_bore": 6.6,
+    "source": "https://www.intos.de/files/Dokumente/Datenblatt%20Corporate%20Design/InLine_269XXG_Datasheet.pdf"
+  },
+  "pcb_seats": [
+    {
+      "x": -18.294243570439,
+      "y": -23.837585772852,
+      "radius": 3.5,
+      "top": 76.25570964499073,
+      "bottom": 66.1997978091967
+    },
+    {
+      "x": -18.294243570439,
+      "y": 25.162414227145,
+      "radius": 3.5,
+      "top": 76.25570964499073,
+      "bottom": 66.1997978091967
+    },
+    {
+      "x": 39.706010430069,
+      "y": -23.837585772852,
+      "radius": 3.5,
+      "top": 76.25570964499073,
+      "bottom": 66.1997978091967
+    },
+    {
+      "x": 39.706010430069,
+      "y": 25.162414227145,
+      "radius": 3.5,
+      "top": 76.25570964499073,
+      "bottom": 66.1997978091967
+    }
+  ],
+  "converter_mount_axes": [
+    [
+      -25,
+      -93
+    ],
+    [
+      -25,
+      -50.5
+    ],
+    [
+      25,
+      -93
+    ],
+    [
+      25,
+      -50.5
+    ]
+  ],
+  "pcb_seat_source_checks": [
+    {
+      "x": -18.294243570439,
+      "y": -23.837585772852,
+      "source_overlap_mm3": 0.0,
+      "result_valid": true
+    },
+    {
+      "x": -18.294243570439,
+      "y": 25.162414227145,
+      "source_overlap_mm3": 0.0,
+      "result_valid": true
+    },
+    {
+      "x": 39.706010430069,
+      "y": -23.837585772852,
+      "source_overlap_mm3": 0.0,
+      "result_valid": true
+    },
+    {
+      "x": 39.706010430069,
+      "y": 25.162414227145,
+      "source_overlap_mm3": 0.0,
+      "result_valid": true
+    }
+  ],
+  "fastener_access": [
+    {
+      "connection": "neck",
+      "xy": [
+        -62,
+        -22
+      ],
+      "blocked_volume_mm3": 0.0,
+      "pass_clear": true
+    },
+    {
+      "connection": "neck",
+      "xy": [
+        -62,
+        22
+      ],
+      "blocked_volume_mm3": 0.0,
+      "pass_clear": true
+    },
+    {
+      "connection": "neck",
+      "xy": [
+        62,
+        -22
+      ],
+      "blocked_volume_mm3": 0.0,
+      "pass_clear": true
+    },
+    {
+      "connection": "neck",
+      "xy": [
+        62,
+        22
+      ],
+      "blocked_volume_mm3": 0.0,
+      "pass_clear": true
+    },
+    {
+      "connection": "body_base",
+      "xy": [
+        -68,
+        -96.5
+      ],
+      "blocked_volume_mm3": 0.0,
+      "pass_clear": true
+    },
+    {
+      "connection": "body_base",
+      "xy": [
+        -68,
+        96.5
+      ],
+      "blocked_volume_mm3": 0.0,
+      "pass_clear": true
+    },
+    {
+      "connection": "body_base",
+      "xy": [
+        68,
+        -96.5
+      ],
+      "blocked_volume_mm3": 0.0,
+      "pass_clear": true
+    },
+    {
+      "connection": "body_base",
+      "xy": [
+        68,
+        96.5
+      ],
+      "blocked_volume_mm3": 0.0,
+      "pass_clear": true
+    },
+    {
+      "connection": "body_base",
+      "xy": [
+        -86,
+        0
+      ],
+      "blocked_volume_mm3": 0.0,
+      "pass_clear": true
+    },
+    {
+      "connection": "body_base",
+      "xy": [
+        86,
+        0
+      ],
+      "blocked_volume_mm3": 0.0,
+      "pass_clear": true
+    }
+  ],
+  "battery_mount_axes": [
+    [
+      -61,
+      -29
+    ],
+    [
+      -61,
+      29
+    ],
+    [
+      61,
+      -29
+    ],
+    [
+      61,
+      29
+    ]
+  ],
+  "battery_soft_pad_thickness_mm": 1.5,
+  "charge_center_mm": [
+    0,
+    -108,
+    46.19979780919669
+  ],
+  "converter_shift_mm": [
+    0,
+    0,
+    0
+  ],
+  "battery_hardware": {
+    "bolts": "4 x M3x14 low-profile head, nominal head diameter5.5 height2",
+    "nuts": "4 x M3 hex AF5.5 height2.4",
+    "washers": "4 x ID3.2 OD7 thickness0.5",
+    "sleeves": "none"
+  },
+  "lidar_mount": {
+    "axes_xy": [
+      [
+        -14.0,
+        -14.0
+      ],
+      [
+        14.0,
+        14.0
+      ]
+    ],
+    "supports": [],
+    "lift_mm": -3.0,
+    "clearance_diameter_mm": 2.4,
+    "head_recess_diameter_mm": 7,
+    "material_under_seat_mm": 2.8,
+    "slot_xy": [
+      0,
+      -64.5
+    ],
+    "slot_size_mm": [
+      20,
+      16
+    ],
+    "slot_corner_radius_mm": 4,
+    "cable_route_diameter_mm": 8,
+    "cable_bend_radius_mm": 12,
+    "thread_status": "N10 diameter2.4 through bores; custom flat mount uses M2x25, underside washer and nut.",
+    "top_plane_z_mm": 258.8748421962815,
+    "external_edge_fillet_mm": 1.0,
+    "hardware": [
+      "N10_Bolt1",
+      "N10_Washers1",
+      "N10_Nut1",
+      "N10_Bolt2",
+      "N10_Washers2",
+      "N10_Nut2"
+    ],
+    "bolt_length_mm": 25,
+    "head_seat_z": 274.5148422962816
+  },
+  "lidar_contact_checks": [],
+  "lidar_hardware_source_checks": [
+    {
+      "name": "N10_Bolt1",
+      "source_overlap_mm3": 0.0,
+      "valid": true
+    },
+    {
+      "name": "N10_Washers1",
+      "source_overlap_mm3": 0.0,
+      "valid": true
+    },
+    {
+      "name": "N10_Nut1",
+      "source_overlap_mm3": 0.0,
+      "valid": true
+    },
+    {
+      "name": "N10_Bolt2",
+      "source_overlap_mm3": 0.0,
+      "valid": true
+    },
+    {
+      "name": "N10_Washers2",
+      "source_overlap_mm3": 0.0,
+      "valid": true
+    },
+    {
+      "name": "N10_Nut2",
+      "source_overlap_mm3": 0.0,
+      "valid": true
+    }
+  ],
+  "lidar_route_final_check": {
+    "route_conflicts": [],
+    "joins_Jetson_rear_reserve": true,
+    "mount_checks": [
+      {
+        "bearing_contact_area_mm2": 6.817256058289154,
+        "upper_tool_overlap_mm3": 0.0,
+        "axis": [
+          -14.0,
+          -14.0
+        ],
+        "shaft_blocked_mm3": 0.0,
+        "tool_blocked_mm3": 0.0,
+        "tool_Jetson_clearance_mm": 26.034180567411937
+      },
+      {
+        "bearing_contact_area_mm2": 6.817256058288887,
+        "upper_tool_overlap_mm3": 0.0,
+        "axis": [
+          14.0,
+          14.0
+        ],
+        "shaft_blocked_mm3": 0.0,
+        "tool_blocked_mm3": 0.0,
+        "tool_Jetson_clearance_mm": 26.034180567411937
+      }
+    ],
+    "cable_Jetson_clearance_mm": 11.061615259375031,
+    "cable_shell_overlap_mm3": 0.0,
+    "shell_valid": true,
+    "shell_solids": 1,
+    "source_holes": "2 bottom counterbores diameter3.3, XY (+14,+14),(-14,-14), deeper smooth bore diameter2.4; supplier drawing confirms M2 through screws, no threaded engagement in lidar",
+    "tool_check": "Radius3 vertical tool from Z180 to screw-head seat; tool insertion via removed front panel not swept",
+    "cable_check": "Diameter8 reserved corridor, R12 nominal bend. Actual connector size and bend radius must be checked; final termination not modeled."
+  },
+  "dcdc_mount_axes": [
+    [
+      -37,
+      -93
+    ],
+    [
+      -37,
+      -51.5
+    ],
+    [
+      37,
+      -93
+    ],
+    [
+      37,
+      -51.5
+    ]
+  ],
+  "battery_ear_mount": {
+    "axes_xy": [
+      [
+        -61,
+        -29
+      ],
+      [
+        -61,
+        29
+      ],
+      [
+        61,
+        -29
+      ],
+      [
+        61,
+        29
+      ]
+    ],
+    "ear_size_mm": [
+      22,
+      18,
+      4
+    ],
+    "nut_pocket_af_mm": 5.8,
+    "nut_pocket_height_mm": 2,
+    "nut_bearing_floor_mm": 2,
+    "nut_bottom_z_mm": 20.19979780919669,
+    "hole_diameter_mm": 3.4,
+    "bolt_protrusion_past_nut_mm": 1.1,
+    "assembly_order": "head, washer, base4mm, battery tray flange4mm, ear floor2mm, captive M3 nut; nuts loaded from above into exposed ears"
+  },
+  "body_mount_axes": [
+    [
+      -68,
+      -96.5
+    ],
+    [
+      -68,
+      96.5
+    ],
+    [
+      68,
+      -96.5
+    ],
+    [
+      68,
+      96.5
+    ],
+    [
+      -86,
+      0
+    ],
+    [
+      86,
+      0
+    ]
+  ],
+  "head_seam_ears": {
+    "axes_xyz": [
+      [
+        -45,
+        58,
+        115.7
+      ],
+      [
+        45,
+        58,
+        115.7
+      ],
+      [
+        -50,
+        58,
+        238.87484219628155
+      ],
+      [
+        50,
+        58,
+        238.87484219628155
+      ]
+    ],
+    "rear_ear_y": [
+      54,
+      58
+    ],
+    "mating_ear_y": [
+      58.4,
+      62.4
+    ],
+    "ear_size": [
+      14,
+      14,
+      4
+    ],
+    "nut_af": 5.8,
+    "nut_depth": 2,
+    "minimum_nominal_edge_land": 3.65,
+    "clearance": 0.4,
+    "bolt": "M3x22"
+  },
+  "jetson_direct_mount": {
+    "axes_xy": [
+      [
+        -46,
+        -30.56156255
+      ],
+      [
+        -46,
+        27.43843745
+      ],
+      [
+        40,
+        -30.56156255
+      ],
+      [
+        40,
+        27.43843745
+      ]
+    ],
+    "pcb_bottom": 124.09981933258808,
+    "pcb_top": 125.66981933258808,
+    "hole_diameter": 2.75,
+    "bolt": "M2.5x20",
+    "nut_af": 5,
+    "nut_height": 2,
+    "nut_pocket_af": 5.3,
+    "removed_factory_solids": [
+      1266,
+      1267,
+      1268,
+      1269,
+      1270
+    ],
+    "factory_base_restored": false,
+    "printed_support_top": 124.09981933258808
+  },
+  "connection_audit": [
+    {
+      "connection": "底板—包围罩壳",
+      "parts": [
+        "ChassisLower",
+        "ChassisLid"
+      ],
+      "axes": [
+        [
+          -68,
+          -96.5
+        ],
+        [
+          -68,
+          96.5
+        ],
+        [
+          68,
+          -96.5
+        ],
+        [
+          68,
+          96.5
+        ],
+        [
+          -86,
+          0
+        ],
+        [
+          86,
+          0
+        ]
+      ],
+      "screw": "6 x M3x12",
+      "nut": "M3 AF5.5 x 2.4",
+      "note": "18×18宽根耳板，厚4；上开六角槽深2；底板同步设置承压台及定位止口避让，从底部装螺丝。"
+    },
+    {
+      "connection": "头部前壳—后壳",
+      "parts": [
+        "HeadFront",
+        "HeadRear"
+      ],
+      "axes": [
+        [
+          -45,
+          58,
+          115.7
+        ],
+        [
+          45,
+          58,
+          115.7
+        ],
+        [
+          -50,
+          58,
+          238.87484219628155
+        ],
+        [
+          50,
+          58,
+          238.87484219628155
+        ]
+      ],
+      "screw": "4 x M3x22",
+      "nut": "M3 AF5.5 x 2.4",
+      "note": "前壳为连续实心柱（保留通孔），后壳4mm耳板＋宽耳根及加强连接，六角槽深2。"
+    },
+    {
+      "connection": "头部—底盘颈座",
+      "parts": [
+        "ChassisLid",
+        "HeadRear"
+      ],
+      "axes": [
+        [
+          -62,
+          -22
+        ],
+        [
+          -62,
+          22
+        ],
+        [
+          62,
+          -22
+        ],
+        [
+          62,
+          22
+        ]
+      ],
+      "screw": "4 x M3x14",
+      "nut": "M3 AF5.5 x 2.4",
+      "note": "14×14×4圆角承压耳；上开六角槽深2；先固定头部与罩壳，再安装前脸。"
+    },
+    {
+      "connection": "C30D PCB—05托架",
+      "parts": [
+        "C30D_actual",
+        "C30D_RemovableTray"
+      ],
+      "axes": [
+        [
+          -18.294243570439,
+          -23.837585772852
+        ],
+        [
+          -18.294243570439,
+          25.162414227145
+        ],
+        [
+          39.706010430069,
+          -23.837585772852
+        ],
+        [
+          39.706010430069,
+          25.162414227145
+        ]
+      ],
+      "screw": "4 x M3x16",
+      "nut": "M3 AF5.5 x 2.4",
+      "note": "05局部承压台厚4；底部六角槽深2；先在工作台上安装PCB，再安装整只托架。PCB原孔约3.03，不扩大。"
+    },
+    {
+      "connection": "充电口法兰—罩壳",
+      "parts": [
+        "ChargePort_Insert_D12_placeholder",
+        "ChassisLid"
+      ],
+      "axes": [
+        [
+          -20,
+          33.19979780919669
+        ],
+        [
+          -20,
+          59.19979780919669
+        ],
+        [
+          20,
+          33.19979780919669
+        ],
+        [
+          20,
+          59.19979780919669
+        ]
+      ],
+      "screw": "4 x M3x10",
+      "nut": "M3 AF5.5 x 2.4",
+      "note": "内侧朝外敞开六角槽；拆壳后可扶住螺母。法兰保留原定位止口。"
+    },
+    {
+      "connection": "充电线缆鞍座—压盖",
+      "parts": [
+        "ChargePort_Insert_D12_placeholder",
+        "ChargeCableClampCap"
+      ],
+      "axes": [
+        [
+          -6.5,
+          -60
+        ],
+        [
+          6.5,
+          -60
+        ]
+      ],
+      "screw": "2 x M3x20",
+      "nut": "M3 AF5.5 x 2.4",
+      "note": "压盖朝上六角槽；从鞍座下方装螺丝，先装线夹后装入整只充电口座；取消单颗顶丝。"
+    },
+    {
+      "connection": "Jetson—09托盘—头壳",
+      "parts": [
+        "Jetson_Orin_Nano_actual",
+        "Jetson_RemovableTray",
+        "HeadRear"
+      ],
+      "axes": [
+        [
+          -46,
+          -30.56156255
+        ],
+        [
+          -46,
+          27.43843745
+        ],
+        [
+          40,
+          -30.56156255
+        ],
+        [
+          40,
+          27.43843745
+        ]
+      ],
+      "screw": "4 x M2.5x20",
+      "nut": "M2.5 AF5 x 2",
+      "note": "拆除原装底托及4颗短螺丝；两片Wi-Fi天线移至托盘前缘固定面；四柱无侧向切口，柱身直径7、顶部直径6、锥根直径13；M2.5x20贯穿固定。"
+    },
+    {
+      "connection": "05托架—电池仓—底板",
+      "parts": [
+        "C30D_RemovableTray",
+        "BatteryTray_strap_slots",
+        "ChassisLower"
+      ],
+      "axes": [
+        [
+          -61,
+          -29
+        ],
+        [
+          -61,
+          29
+        ],
+        [
+          61,
+          -29
+        ],
+        [
+          61,
+          29
+        ]
+      ],
+      "screw": "4 x M3x14",
+      "nut": "M3 AF5.5 x 2.4",
+      "note": "外伸耳厚4、槽深2、底厚2；螺母上露0.4；底部0.5垫片。"
+    },
+    {
+      "connection": "06 DC/DC托架—底板",
+      "parts": [
+        "DCDC_RemovableTray",
+        "ChassisLower"
+      ],
+      "axes": [
+        [
+          -37,
+          -93
+        ],
+        [
+          -37,
+          -51.5
+        ],
+        [
+          37,
+          -93
+        ],
+        [
+          37,
+          -51.5
+        ]
+      ],
+      "screw": "4 x M3x10",
+      "nut": "M3 AF5.5 x 2.4",
+      "note": "外伸耳厚4、槽深2、底厚2；螺母上露0.4；底部0.5垫片。"
+    },
+    {
+      "connection": "金属电机支架—底板",
+      "parts": [
+        "ChassisLower"
+      ],
+      "axes": [
+        [
+          -50,
+          -82
+        ],
+        [
+          -50,
+          -52
+        ],
+        [
+          -50,
+          52
+        ],
+        [
+          -50,
+          82
+        ],
+        [
+          -74,
+          -82
+        ],
+        [
+          -74,
+          -52
+        ],
+        [
+          -74,
+          52
+        ],
+        [
+          -74,
+          82
+        ],
+        [
+          50,
+          -82
+        ],
+        [
+          50,
+          -52
+        ],
+        [
+          50,
+          52
+        ],
+        [
+          50,
+          82
+        ],
+        [
+          74,
+          -82
+        ],
+        [
+          74,
+          -52
+        ],
+        [
+          74,
+          52
+        ],
+        [
+          74,
+          82
+        ]
+      ],
+      "screw": "16 x M3x10（按金属板厚复核）",
+      "nut": "M3 AF5.5 x 2.4",
+      "note": "金属支架自带安装耳；M3贯穿现有3.5孔，底板上方普通螺母及垫片，不对金属件重开六角孔。"
+    }
+  ],
+  "fastener_exceptions": [
+    "Jetson实际PCB孔直径2.75，采用M2.5x20及M2.5螺母，不扩大电路板孔。",
+    "N10原孔直径2.4，沿用M2x25及M2螺母。",
+    "屏幕商品图标注M3原生螺纹，D435原生安装螺纹：使用机器螺钉进入原生金属螺纹，不改采购件为通孔。允许旋入深度需实物确认。",
+    "前面板开关沿用原M12锁紧螺母。",
+    "电机/六角联轴器及轮毂采购件原有轴锁紧结构保持不变。",
+    "DC/DC无可信安装孔图，保留两条绑带槽；绑带不是自攻螺丝。"
+  ],
+  "collisions": [],
+  "service_conflicts": [],
+  "errors": [],
+  "service_paths": [
+    {
+      "name": "N10_up",
+      "prerequisite": "Disconnect and unthread lead from slot; hold the two M2 nuts from inside head after front panel removal and withdraw M2x25 screws upward.",
+      "samples": 8,
+      "boolean_tests": 0,
+      "conflicts": [],
+      "pass_sampled": true
+    },
+    {
+      "name": "ChargeCartridge_rearward",
+      "prerequisite": "Disconnect charge harness, remove four flange screws; withdraw cartridge rearward.",
+      "samples": 10,
+      "boolean_tests": 52,
+      "conflicts": [],
+      "pass_sampled": true
+    },
+    {
+      "name": "FrontModule_forward",
+      "prerequisite": "Disconnect screen/camera; remove four front-face M3 screws; withdraw front module.",
+      "samples": 11,
+      "boolean_tests": 30,
+      "conflicts": [],
+      "pass_sampled": true
+    },
+    {
+      "name": "BodyAndHead_up",
+      "prerequisite": "Withdraw charging cartridge first; disconnect neck and switch leads; remove six underside M3 screws; lift cover and head together.",
+      "samples": 12,
+      "boolean_tests": 178,
+      "conflicts": [],
+      "pass_sampled": true
+    },
+    {
+      "name": "HeadModule_up",
+      "prerequisite": "After removing the cover assembly, access four neck screws from its underside and disconnect head leads.",
+      "samples": 11,
+      "boolean_tests": 9,
+      "conflicts": [],
+      "pass_sampled": true
+    },
+    {
+      "name": "JetsonTray_forward",
+      "prerequisite": "Remove front module, disconnect leads and remove tray bolts; lift12mm then withdraw forward.",
+      "samples": 14,
+      "boolean_tests": 73,
+      "conflicts": [],
+      "pass_sampled": true
+    },
+    {
+      "name": "C30DTray_up",
+      "prerequisite": "Remove cover/head, controller leads and four bottom bolts and washers; lift upper clamp with captured nuts and pads.",
+      "samples": 9,
+      "boolean_tests": 34,
+      "conflicts": [],
+      "pass_sampled": true
+    },
+    {
+      "name": "DCDCTray_up",
+      "prerequisite": "For complete tray removal, first remove both rear motor/wheel/bracket modules, cover/head, converter leads and tray bolts. Converter itself can be serviced on the fixed tray by releasing its straps.",
+      "samples": 9,
+      "boolean_tests": 4,
+      "conflicts": [],
+      "pass_sampled": true
+    },
+    {
+      "name": "Battery_up",
+      "prerequisite": "Remove cover/head and controller tray, disconnect battery; upper clamp, shared fasteners and pads have been removed.",
+      "samples": 9,
+      "boolean_tests": 7,
+      "conflicts": [],
+      "pass_sampled": true
+    },
+    {
+      "name": "BatteryTray_up",
+      "prerequisite": "Remove cover/head, controller and battery; release tray bolts and lift directly.",
+      "samples": 9,
+      "boolean_tests": 4,
+      "conflicts": [],
+      "pass_sampled": true
+    },
+    {
+      "name": "RF_MotorService",
+      "prerequisite": "Remove cover/head, this wheel and coupler; remove bracket bolts, slide metal bracket and motor outward.",
+      "samples": 12,
+      "boolean_tests": 18,
+      "conflicts": [],
+      "pass_sampled": true
+    },
+    {
+      "name": "RB_MotorService",
+      "prerequisite": "Remove cover/head, this wheel and coupler; remove bracket bolts, slide metal bracket and motor outward.",
+      "samples": 12,
+      "boolean_tests": 28,
+      "conflicts": [],
+      "pass_sampled": true
+    },
+    {
+      "name": "LF_MotorService",
+      "prerequisite": "Remove cover/head, this wheel and coupler; remove bracket bolts, slide metal bracket and motor outward.",
+      "samples": 12,
+      "boolean_tests": 18,
+      "conflicts": [],
+      "pass_sampled": true
+    },
+    {
+      "name": "LB_MotorService",
+      "prerequisite": "Remove cover/head, this wheel and coupler; remove bracket bolts, slide metal bracket and motor outward.",
+      "samples": 12,
+      "boolean_tests": 28,
+      "conflicts": [],
+      "pass_sampled": true
+    }
+  ],
+  "support_revision": "Four uninterrupted D7 Jetson pillars with D6 tapered tips; antennas relocated to integrated front backplates",
+  "wifi_relocation": {
+    "issues": [],
+    "cables": {
+      "Right": {
+        "terminal_mating_overlap_trimmed_mm3": 0.14276393550739755,
+        "length_mm": 88.15445765723179,
+        "minimum_modeled_bend_radius_mm": 3.9199999999999977,
+        "original_length_estimate_mm": 99.62093102151812
+      },
+      "Left": {
+        "terminal_mating_overlap_trimmed_mm3": 0.06832461444967465,
+        "length_mm": 91.22079029344047,
+        "minimum_modeled_bend_radius_mm": 3.9200000000000013,
+        "original_length_estimate_mm": 99.20881629398343
+      }
+    },
+    "antennas": {
+      "Right": {
+        "source_solids": [
+          1375,
+          1376,
+          1377
+        ],
+        "target_center": [
+          25.0,
+          36.4,
+          134.0
+        ]
+      },
+      "Left": {
+        "source_solids": [
+          1379,
+          1380,
+          1381
+        ],
+        "target_center": [
+          -25.0,
+          36.4,
+          134.0
+        ]
+      }
+    },
+    "post_diameter_mm": 7,
+    "post_top_diameter_mm": 6,
+    "post_top_taper_height_mm": 2,
+    "post_bore_mm": 2.9,
+    "nearest_fixed_connector_clearance_mm": 1.3598313212489055,
+    "antenna_adhesive_gap_mm": 0.5,
+    "duplicate_source_reference": "Original left antenna alternative solids1383-1387 overlap1379; retained only in backup, not fitted twice."
+  },
+  "wifi_support_wall": {
+    "before_faces": 98,
+    "after_faces": 51,
+    "old_volume_mm3": 39942.96136451727,
+    "new_volume_mm3": 44037.69405823788,
+    "wall_mm": 4,
+    "antenna_face_y": 37.3,
+    "antenna_adhesive_gap_mm": 0.5,
+    "unchanged_base_and_pillars_difference_mm3": 0.0,
+    "collisions": [],
+    "valid": true,
+    "solids": 1,
+    "closed_mesh": true
+  }
+}

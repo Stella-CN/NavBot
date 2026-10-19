@@ -1,0 +1,146 @@
+[
+  {
+    "part": "HeadFront",
+    "axis": [
+      -45,
+      115.7
+    ],
+    "solid_boss_missing": 0.0,
+    "pass_geometry": true
+  },
+  {
+    "part": "HeadFront",
+    "axis": [
+      45,
+      115.7
+    ],
+    "solid_boss_missing": 0.0,
+    "pass_geometry": true
+  },
+  {
+    "part": "HeadFront",
+    "axis": [
+      -50,
+      238.87484219628155
+    ],
+    "solid_boss_missing": 0.0,
+    "pass_geometry": true
+  },
+  {
+    "part": "HeadFront",
+    "axis": [
+      50,
+      238.87484219628155
+    ],
+    "solid_boss_missing": 0.0,
+    "pass_geometry": true
+  },
+  {
+    "part": "Jetson_RemovableTray",
+    "axis": [
+      -46,
+      -30.56156255
+    ],
+    "minimum_sampled_load_section_mm2": 23.77972370979263,
+    "continuous_core_missing_mm3": 0.0,
+    "pass_geometry": true
+  },
+  {
+    "part": "Jetson_RemovableTray",
+    "axis": [
+      -46,
+      27.43843745
+    ],
+    "minimum_sampled_load_section_mm2": 23.77972370979263,
+    "continuous_core_missing_mm3": 0.0,
+    "pass_geometry": true
+  },
+  {
+    "part": "Jetson_RemovableTray",
+    "axis": [
+      40,
+      -30.56156255
+    ],
+    "minimum_sampled_load_section_mm2": 23.77972370979263,
+    "continuous_core_missing_mm3": 0.0,
+    "pass_geometry": true
+  },
+  {
+    "part": "Jetson_RemovableTray",
+    "axis": [
+      40,
+      27.43843745
+    ],
+    "minimum_sampled_load_section_mm2": 23.77972370979263,
+    "continuous_core_missing_mm3": 0.0,
+    "pass_geometry": true
+  },
+  {
+    "pair": [
+      "Jetson_RemovableTray",
+      "HeadRear"
+    ],
+    "overlap": 0.005220863473605992,
+    "pass_geometry": true
+  },
+  {
+    "pair": [
+      "Jetson_RemovableTray",
+      "ChassisLid"
+    ],
+    "overlap": 0.0,
+    "pass_geometry": true
+  },
+  {
+    "part": "HeadRear",
+    "axis": [
+      -45,
+      115.7
+    ],
+    "root_section_areas_mm2": [
+      100.00000000000142,
+      100.00000000000142,
+      99.99999999999797
+    ],
+    "pass_geometry": true
+  },
+  {
+    "part": "HeadRear",
+    "axis": [
+      45,
+      115.7
+    ],
+    "root_section_areas_mm2": [
+      100.00000000000153,
+      100.00000000000153,
+      99.99999999999831
+    ],
+    "pass_geometry": true
+  },
+  {
+    "part": "HeadRear",
+    "axis": [
+      -50,
+      238.87484219628155
+    ],
+    "root_section_areas_mm2": [
+      100.00000000000139,
+      100.00000000000139,
+      100.00000000010972
+    ],
+    "pass_geometry": true
+  },
+  {
+    "part": "HeadRear",
+    "axis": [
+      50,
+      238.87484219628155
+    ],
+    "root_section_areas_mm2": [
+      100.00000000000139,
+      100.00000000000139,
+      100.00000000011656
+    ],
+    "pass_geometry": true
+  }
+]

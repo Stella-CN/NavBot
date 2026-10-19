@@ -1,0 +1,56 @@
+[
+  {
+    "axis": [
+      -68,
+      -96.5
+    ],
+    "ear_bearing_missing": 0.0,
+    "base_support_missing": 0.0,
+    "pass_geometry": true
+  },
+  {
+    "axis": [
+      -68,
+      96.5
+    ],
+    "ear_bearing_missing": 0.0,
+    "base_support_missing": 0.0,
+    "pass_geometry": true
+  },
+  {
+    "axis": [
+      68,
+      -96.5
+    ],
+    "ear_bearing_missing": 0.0,
+    "base_support_missing": 0.0,
+    "pass_geometry": true
+  },
+  {
+    "axis": [
+      68,
+      96.5
+    ],
+    "ear_bearing_missing": 0.0,
+    "base_support_missing": 0.0,
+    "pass_geometry": true
+  },
+  {
+    "axis": [
+      -86,
+      0
+    ],
+    "ear_bearing_missing": 0.0,
+    "base_support_missing": 0.0,
+    "pass_geometry": true
+  },
+  {
+    "axis": [
+      86,
+      0
+    ],
+    "ear_bearing_missing": 0.0,
+    "base_support_missing": 0.0,
+    "pass_geometry": true
+  }
+]
