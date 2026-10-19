@@ -1,0 +1,12 @@
+# macOS metadata
+.DS_Store
+._*
+
+# Python caches
+__pycache__/
+*.py[cod]
+
+# ROS 2 / colcon generated output
+/build/
+/install/
+/log/

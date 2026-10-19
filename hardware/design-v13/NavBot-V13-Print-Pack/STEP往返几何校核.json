@@ -1,0 +1,20 @@
+[
+  {
+    "name": "HeadFront",
+    "cad_volume": 72525.03545557261,
+    "step_volume": 72523.79583748296,
+    "cad_only": 0.0,
+    "step_only": 0.0,
+    "cad_only_valid": true,
+    "step_only_valid": true
+  },
+  {
+    "name": "HeadRear",
+    "cad_volume": 408008.30546102824,
+    "step_volume": 407543.77111948474,
+    "cad_only": 0.0,
+    "step_only": 0.0,
+    "cad_only_valid": true,
+    "step_only_valid": true
+  }
+]

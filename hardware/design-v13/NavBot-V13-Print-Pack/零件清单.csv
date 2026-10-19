@@ -1,0 +1,11 @@
+﻿编号,名称,数量,X尺寸mm,Y尺寸mm,Z尺寸mm,材料,STL文件,STEP文件,闭合网格
+01,承重底板（直连金属支架）,1,188.0,210.0,13.0,PETG,STL/01_ChassisLower.stl,STEP/01_ChassisLower.step,True
+02,整体罩壳＋颈部过渡,1,188.74,214.01,91.18,PETG,STL/02_ChassisLid.stl,STEP/02_ChassisLid.step,True
+03,后抽充电座＋线夹鞍座,1,52.0,55.0,40.0,PETG,STL/03_ChargePort_Insert_D12_placeholder.stl,STEP/03_ChargePort_Insert_D12_placeholder.step,True
+04,双螺丝鞍式线夹压盖,1,20.0,14.0,7.0,PETG,STL/04_ChargeCableClampCap.stl,STEP/04_ChargeCableClampCap.step,True
+05,上压架＋C30D 安装台＋M3螺母耳,1,138.0,76.0,58.06,PETG,STL/05_C30D_RemovableTray.stl,STEP/05_C30D_RemovableTray.step,True
+06,升压模块四点框架,1,93.0,52.5,58.0,PETG,STL/06_DCDC_RemovableTray.stl,STEP/06_DCDC_RemovableTray.step,True
+07,头部前壳＋面板＋屏幕/相机托架,1,178.62,28.05,148.75,PETG,STL/07_HeadFront.stl,STEP/07_HeadFront.step,True
+08,曲面主壳＋N10齐平安装面及穿线孔,1,196.76,172.33,151.68,PETG,STL/08_HeadRear.stl,STEP/08_HeadRear.step,True
+09,Jetson 可拆托盘,1,111.0,97.0,30.3,PETG,STL/09_Jetson_RemovableTray.stl,STEP/09_Jetson_RemovableTray.step,True
+10,电池下托＋共用安装耳,1,138.0,91.6,11.0,PETG,STL/10_BatteryTray_strap_slots.stl,STEP/10_BatteryTray_strap_slots.step,True

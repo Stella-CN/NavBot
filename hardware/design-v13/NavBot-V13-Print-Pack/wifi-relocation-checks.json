@@ -1,0 +1,50 @@
+{
+  "issues": [],
+  "cables": {
+    "Right": {
+      "terminal_mating_overlap_trimmed_mm3": 0.14276393550739755,
+      "length_mm": 88.15445765723179,
+      "minimum_modeled_bend_radius_mm": 3.9199999999999977,
+      "original_length_estimate_mm": 99.62093102151812
+    },
+    "Left": {
+      "terminal_mating_overlap_trimmed_mm3": 0.06832461444967465,
+      "length_mm": 91.22079029344047,
+      "minimum_modeled_bend_radius_mm": 3.9200000000000013,
+      "original_length_estimate_mm": 99.20881629398343
+    }
+  },
+  "antennas": {
+    "Right": {
+      "source_solids": [
+        1375,
+        1376,
+        1377
+      ],
+      "target_center": [
+        25.0,
+        36.4,
+        134.0
+      ]
+    },
+    "Left": {
+      "source_solids": [
+        1379,
+        1380,
+        1381
+      ],
+      "target_center": [
+        -25.0,
+        36.4,
+        134.0
+      ]
+    }
+  },
+  "post_diameter_mm": 7,
+  "post_top_diameter_mm": 6,
+  "post_top_taper_height_mm": 2,
+  "post_bore_mm": 2.9,
+  "nearest_fixed_connector_clearance_mm": 1.3598313212489055,
+  "antenna_adhesive_gap_mm": 0.5,
+  "duplicate_source_reference": "Original left antenna alternative solids1383-1387 overlap1379; retained only in backup, not fitted twice."
+}

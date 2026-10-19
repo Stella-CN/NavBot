@@ -1,0 +1,8 @@
+{
+  "name": "JetsonTray_forward",
+  "prerequisite": "Remove front module, disconnect leads and remove tray bolts; lift12mm then withdraw forward.",
+  "samples": 14,
+  "boolean_tests": 73,
+  "conflicts": [],
+  "pass_sampled": true
+}

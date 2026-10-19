@@ -1,0 +1,19 @@
+NavBot V13 现阶段最终工程基准
+冻结日期：2026-10-19
+
+1. NavBot-V13.FCStd：完整FreeCAD装配工程，内含零件实体。清理未改变工程几何；采购件中原有无效拓扑及包络件限制见装配说明。该文件主要是已生成实体，不是完整可回放的参数化特征历史。
+2. prototype-stl/：10个打印件，保留装配坐标；既有文件名和路径不变。
+3. NavBot-V13-Print-Pack/：STL和STEP为居中落地版本，含零件/紧固件清单、装配和PETG打印说明、最终参考图及既有校核报告。
+4. NavBot-V13-Print-Pack.zip：上述打印交付目录的便携副本。
+5. 打印件清单.csv：对象名与打印编号的映射，供导出工具读取。
+6. tools/：独立于历史设计目录的导出、验证和打包工具。
+7. 工程SHA256SUMS.txt：本目录交付文件校验值。
+
+修改或重新导出流程（在项目根目录执行）
+PYTHONPATH=/Applications/FreeCAD.app/Contents/Resources/lib /Applications/FreeCAD.app/Contents/Resources/bin/python hardware/design-v13/tools/export_print_pack.py
+PYTHONPATH=/Applications/FreeCAD.app/Contents/Resources/lib /Applications/FreeCAD.app/Contents/Resources/bin/python hardware/design-v13/tools/verify_release.py
+python3 hardware/design-v13/tools/package_release.py
+
+导出仅更新STL/STEP和导出清单，不重建设计、不自动重算干涉或刷新参考图。修改结构后应重新校核相应干涉、孔位及拆装，并更新说明/图示；保留报告不应视为对未来修改的认证。
+
+本次整理删除design-v01至design-v12、v13过程备份、失败模型、调试/旧构建脚本、日志、网格渲染缓存及重复根目录预览。原始采购件模型和图纸保留于hardware。
