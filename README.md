@@ -2,7 +2,7 @@
 
 NavBot 是一个自主设计的全栈（硬件 + 软件）自主导航机器人项目，涵盖机械结构、嵌入式控制、传感器接入与 ROS 2 导航系统。机器人采用 4 个直流电机作为执行单元，以轮趣 C30D（STM32F407）作为“小脑”、Jetson Orin Nano 作为“大脑”，通过自定义串口协议连接上下位机，使用 RealSense D435 深度相机和 N10 激光雷达感知环境。
 
-**当前阶段：** 仓库已保存 V13 机械设计基准、采购件参考资料和打印交付包；ROS 2 软件、STM32 固件及串口协议实现尚未纳入仓库。下述软件职责描述为目标架构，不代表功能已经完成或通过实机验证。
+**当前阶段：** 仓库已保存 V13 机械设计基准、采购件参考资料和打印交付包，并在 `deps/navbot_body/` 加入 STM32 HAL + FreeRTOS 工程模板及静态验证。ROS 2 软件、电机闭环及串口协议尚未实现；模板未编译、下载或实机验证。下述软件职责描述为目标架构。
 
 ## 系统架构
 
@@ -60,14 +60,22 @@ NavBot/
 │       ├── 打印件清单.csv
 │       └── tools/                # 导出、验证与打包脚本
 ├── src/                         # 预留：ROS 2 软件及嵌入式固件
-├── docs/                        # 预留：架构、通信协议与调试文档
-├── deps/                        # 预留：项目依赖资料
+├── docs/                        # 硬件分析、通信协议草案与实施计划
+├── deps/navbot_body/             # Git submodule：C30D FreeRTOS 模板
 └── release/                     # 预留：系统发布产物
 ```
 
-`src/`、`docs/`、`deps/` 和 `release/` 当前为空；Git 不跟踪空目录，克隆后可按需创建。
+`src/` 和 `release/` 为预留目录；`docs/` 保存硬件分析与协议设计草案。STM32 模板的使用和验证范围见[工程说明](deps/navbot_body/README.md)。Git 不跟踪空目录。
 
 ## 查看与使用
+
+首次克隆时一并拉取固件子模块：
+
+```sh
+git clone --recurse-submodules https://github.com/Stella-CN/NavBot.git
+```
+
+已有仓库在拉取主仓库更新后，使用 `git submodule update --init --recursive` 检出主仓库锁定的固件提交。固件独立仓库为 [navbot_body](https://github.com/Stella-CN/navbot_body)；`.gitmodules` 的 `branch = main` 用于显式更新远端子模块，普通初始化仍遵循主仓库记录的提交。
 
 1. 阅读 [V13 工程说明](hardware/design-v13/工程说明.txt)，了解设计基准和文件用途。
 2. 使用 FreeCAD 打开 `NavBot-V13.FCStd` 查看装配。
@@ -76,7 +84,7 @@ NavBot/
 
 导出工具只更新 STL / STEP 和导出清单，不重建设计、不自动重算干涉或刷新参考图。结构变更后需重新检查孔位、干涉和拆装空间，并更新对应报告与图示。
 
-当前没有可执行的 ROS 2 构建、启动或固件烧录流程，待源码和环境配置加入后补充。
+STM32 模板已提供 CMake + GCC 和 VS Code 手动入口，当前仅完成静态检查；ROS 2 构建、启动及实机下载流程尚未验证。
 
 ## 后续开发
 
