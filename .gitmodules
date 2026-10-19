@@ -1,0 +1,4 @@
+[submodule "deps/navbot_body"]
+	path = deps/navbot_body
+	url = https://github.com/Stella-CN/navbot_body.git
+	branch = main
