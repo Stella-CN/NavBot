@@ -1,0 +1,14 @@
+{
+  "version": "1.0.0",
+  "scope": "hardware mechanical structure",
+  "source_design": "v13",
+  "archived_on": "2026-10-23",
+  "geometry_frozen_on": "2026-10-19",
+  "source_directory": "hardware/design-v13",
+  "source_git_commit": "e7e9989309e920b30ea0b3598b9b9eb751b64340",
+  "file_count": 74,
+  "archive_sha256": "f9252eb5ba0f29aaa9ad1dc960552e480e8f0b3119e4ff35f49517c9fa8f552f",
+  "cad_sha256": "fe1101c89739184e6f8f08a7eda14b9a1d607c4e875d1499155e7be53d69366b",
+  "existing_manifest_verified_files": 73,
+  "validation": "File integrity and archive round-trip only; existing CAD reports preserved; no new physical or geometry validation."
+}

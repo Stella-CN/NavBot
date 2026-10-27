@@ -83,3 +83,6 @@ Testing/
 # Hardware: keep working designs/components local; track release archives only.
 /hardware/*
 !/hardware/releases/
+
+.vscode/
+.agents/
