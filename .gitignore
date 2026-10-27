@@ -79,3 +79,7 @@ vcpkg_installed/
 # test output & cache
 Testing/
 .cache/
+
+# Hardware: keep working designs/components local; track release archives only.
+/hardware/*
+!/hardware/releases/

@@ -1,0 +1,27 @@
+{
+  "version": "1.2.0",
+  "scope": "hardware mechanical structure archive",
+  "source_design": "v16.5",
+  "archived_on": "2026-10-27",
+  "source_directory": "hardware/designs/design-v16.5",
+  "geometry_modified": false,
+  "cad_sha256": "80d61bcb64fba805cce83f172761960cff6af6134dfe1a7d3343552151be54bb",
+  "file_count": 95,
+  "archive_sha256": "f1aa7e6291a3ba152e2449dee68c5c553e98aa5ebfb1e0bd47b6429cb8f55f16",
+  "cleanup": {
+    "removed_file_count": 150,
+    "removed_bytes": 255855098
+  },
+  "printed_parts": 9,
+  "validation": "Verified existing manifests, report/CAD hashes and every ZIP member; no new CAD or physical validation.",
+  "rebuild_dependencies": [
+    "hardware/designs/design-v15 baseline CAD and verification data",
+    "hardware/designs/design-v16/NavBot-V16-Print-Pack/紧固连接清单.csv",
+    "local FreeCAD Python API",
+    "VTK and Pillow"
+  ],
+  "preview_files": [
+    "CAD-exterior.png",
+    "CAD-exploded.png"
+  ]
+}

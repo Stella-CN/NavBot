@@ -1,8 +1,0 @@
-{
-  "name": "ChargeCartridge_rearward",
-  "prerequisite": "Disconnect charge harness and remove four flange screws; withdraw rearward.",
-  "samples": 10,
-  "boolean_tests": 52,
-  "conflicts": [],
-  "pass_sampled": true
-}

@@ -1,8 +1,0 @@
-NavBot 机器人硬件工程
-当前阶段唯一设计基准：hardware/design-v13/NavBot-V13.FCStd
-开始阅读：hardware/design-v13/工程说明.txt
-打印交付包：hardware/design-v13/NavBot-V13-Print-Pack.zip
-最终爆炸图：hardware/design-v13/NavBot-V13-Print-Pack/参考图/CAD-combined-exploded.png
-
-hardware根目录中的STEP、图纸、厂家资料及压缩包为原始采购件资料，保留原名；包含部分暂未使用的备选器件，不代表当前装配采用。
-历史设计目录已删除。本次为工程文件整理，冻结现有v13几何，并不表示实物装配和长期强度试验已经完成。
