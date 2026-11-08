@@ -1,146 +1,93 @@
-# Jetson与C30D通信协议草案
+# Jetson 与 C30D 通信及使用
 
-版本：v0.1。日期：2026-10-19。状态：生产运动协议设计草案。
+更新：2026-11-08。适用于主仓库锁定的固件 **1.1.2**，线上帧 `version=1`。本文替代早期设计草案；精确运动字段、状态和限制见[固件运动协议](../deps/navbot_body/docs/motion-control.md)，编码解码见 [chassis_serial.py](../deps/navbot_body/tools/chassis_serial.py)。
 
-2026-11-08：已实现四轮速度PI、真实轮速上报、独立轮速/车体速度指令及超时停机；当前精确布局和限制以 [运动通信 v1.1.2](../deps/navbot_body/docs/motion-control.md) 为准。运动测试记录中IMU存在间歇无效、姿态未就绪，尚未通过IMU验收。下文包含尚未实现的规划（如完整参数事务、ROS里程计/EKF），不能视为现有功能。
+## 当前链路
 
-2026-10-21：已实现并实测其台架遥测子集，具体布局、能力和限制以 [USART3 台架协议 v1.0](../deps/navbot_body/docs/chassis-link.md) 为准；下文其余运动/配置功能仍属设计建议。
+Jetson通过USB连接C30D的USART3，发送独立轮速或车体速度；C30D执行500 Hz四轮闭环并返回编码器数据。Jetson工具根据轮速与名义几何计算车体速度，尚未实现ROS话题、里程计积分、TF/EKF或导航节点。
 
-本草案面向新版C30D、MG513 GMR四驱差速和ROS 2 Jazzy。硬件依据见[硬件分析](c30d-hardware-analysis.md)。USB连接已由用户确认，其余通信参数为建议值。
+- 串口：460800 baud、8N1、无流控。DAPLink用于SWD，不作为数据串口。
+- 当前设备稳定路径：`/dev/serial/by-id/usb-1a86_USB_Single_Serial_5A6D001621-if00`。更换设备后应重新确认，不能假定永远是`ttyACM0`。
+- 二进制小端、定宽整数和IEEE754 float32；帧长`24+payload_len`，payload最多256字节，CRC16/CCITT-FALSE覆盖version至payload末尾。
+- 帧头依次为`5A A5`、version:u8、msg_id:u8、payload_len:u16、seq:u32、session:u32、timestamp_us:u64，随后payload与CRC:u16。
+- MCU时间单位µs、分辨率1ms；轮速/控制状态使用控制采样时间，IMU使用读事务起始时间。时间查询已实现，但ROS时钟映射精度未验收。
 
-## 1 系统职责
+## 当前消息
 
-| C30D | Jetson |
-| --- | --- |
-| 编码器、四路速度PI、PWM | USB串口驱动、轮式里程计 |
-| 差速逆运动学与速度斜坡 | EKF融合、TF与诊断 |
-| IMU、电压、开关采集 | N10和D435驱动 |
-| 失联停车、故障锁定、看门狗 | SLAM/AMCL与Nav2 |
-| 采样时间与底层诊断 | 参数管理、记录和部署 |
-
-运动命令为车体`vx`和`wz`，不开放导航链路直接控制PWM。普通轮底盘不接受横向速度。Jetson计算轮式里程计，C30D不额外积分另一份地图位姿。
-
-TF所有权：EKF单独发布`odom → base_link`；SLAM或AMCL发布`map → odom`；轮式里程计节点不重复发布前者。IMU安装姿态由`base_link → imu_link`固定变换表达。[R2]
-
-## 2 传输与坐标约定
-
-| 参数 | 建议值 | 状态 |
+| ID | 方向 / 频率 | 实际用途 |
 | --- | --- | --- |
-| 接口 | USB串口3，USART3，经CH9102F | 设计建议；USB介质已确认 |
-| 串口 | 460800 baud、8N1、无流控 | 待实测 |
-| 数据 | 二进制、小端、定宽整数 | 设计建议 |
-| 浮点 | IEEE 754 float32；拒绝NaN和Inf | 设计建议 |
-| 车体坐标 | X前、Y左、Z上；左转wz为正 | 设计建议，遵循REP-103 |
-| 四轮顺序 | 左前、左后、右前、右后 | 设计建议 |
-| 轮速正方向 | 该轮推动车体前进为正 | 设计建议 |
-| IMU单位 | rad/s、m/s²；加速度保留重力响应 | 设计建议 |
+| 0x01 HELLO | 双向，建链 | 固件/能力/启动标识/频率；新会话强制停止旧运动 |
+| 0x02 TIME_SYNC | 双向，按需 | 主机和MCU时间查询，不能直接当作已同步的ROS时间 |
+| 0x10 CMD_VEL | 下行，工具约50 Hz | `vx:f32,wz:f32,valid_ms:u16`；m/s、rad/s；不支持vy |
+| 0x11 SET_ENABLE | 下行，按需 | `enabled:u8`；0等同STOP |
+| 0x12 STOP | 下行，按需 | 空payload；立即切PWM并撤销许可 |
+| 0x14 CMD_WHEELS | 下行，按需 | `omega:f32[4],valid_ms:u16`；rad/s |
+| 0x20 WHEEL_STATE | 上行，100 Hz | `count:i64[4],omega:f32[4],valid:u32`；轮速是最新2ms样本 |
+| 0x21 IMU_RAW | 上行，100 Hz | `valid:u32,gyro:f32[3],accel:f32[3]`；rad/s、m/s²，保留重力响应 |
+| 0x22 ATTITUDE | 上行，50 Hz | `valid:u32,q:f32[4]`；四元数x/y/z/w |
+| 0x23 STATUS | 上行，10 Hz | 电机许可、有效性、IMU健康/校准、通信及恢复计数 |
+| 0x24 MOTION_STATE | 上行，100 Hz | 状态、故障、执行序号/指令年龄、目标/斜坡轮速、PWM |
+| 0x31 CONFIG_GEOMETRY | 下行，按需 | `radius:f32,track:f32,sign:i8[4]`；仅Disabled可修改，RAM配置 |
+| 0x7F ACK | 上行，响应请求 | `request_seq:u32,request_id:u8,result:u8` |
 
-板卡通道到车轮的映射另存配置。不能直接发送C结构体内存，必须逐字段编解码，避免填充、对齐和端序差异。USB设备使用稳定身份或物理端口规则识别，不能固定假定为`/dev/ttyUSB0`。
+`0x13`清故障当前返回状态禁止；`0x30 CONFIG_GET`、通用参数事务、Flash持久化配置未实现。STATUS没有电压、电流、荷电百分比或已验证硬件急停状态，不应沿用旧草案的字段解释。
 
-IMU的坐标变换只执行一次。传输使用明确的imu_link轴定义，Jetson通过外参转换；姿态四元数所代表的参考系、初始航向和安装变换组合顺序须在冻结前明确。
+协议轮序为 **C左前、D左后、B右前、A右后**。配置前为电气方向；配置后按逻辑前进方向使用目标与反馈。本车已确认sign为`[1,-1,-1,1]`，更换接线后需重验。
 
-## 3 通用帧
+## 数据有效性与车体速度
 
-| 偏移 | 字段 | 类型/字节数 | 含义 |
-| --- | --- | --- | --- |
-| 0 | SOF | u16 / 2 | 0xA55A，线上5A A5 |
-| 2 | version | u8 / 1 | 1 |
-| 3 | msg_id | u8 / 1 | 消息类型 |
-| 4 | payload_len | u16 / 2 | 0至256 |
-| 6 | seq | u32 / 4 | 两方向独立递增 |
-| 10 | session_id | u32 / 4 | 当前连接会话 |
-| 14 | timestamp_us | u64 / 8 | 发送端单调时间；传感器帧为采样时间 |
-| 22 | payload | N | 消息内容 |
-| 22+N | CRC16 | u16 / 2 | CRC结果，小端 |
+接收端检查CRC、会话、序号、时间戳与有效位：轮状态`valid==15`表示四轮有效；IMU/姿态须各自`valid==1`。不能因为收到报文，就把旧样本或无效数据当作测量。主机重连使用新会话；MCU重启或方向配置变化后重建累计计数基线。
 
-总长`24+N`字节，最大280字节。CRC16/CCITT-FALSE：poly=0x1021、init=0xFFFF、refin=false、refout=false、xorout=0；覆盖version至payload，不含SOF与CRC。标准检查值：ASCII `123456789`对应0x29B1。
+设协议轮速为`ωLF,ωLR,ωRF,ωRR`：
 
-接收器必须处理拆包、粘包、噪声、长度超限和中途断连。非法帧不刷新运动超时。CRC失败后需有界重新同步，不能信任未经校验的长度持续等待。解析超时和最大处理工作量待冻结。
+```text
+v_left  = radius × (ωLF + ωLR) / 2
+v_right = radius × (ωRF + ωRR) / 2
+vx = (v_left + v_right) / 2
+wz = (v_right - v_left) / track
+```
 
-## 4 消息与数据内容
+当前radius=0.0425m、track=0.228m是CAD初值，编码器暂按20000 counts/rev；换算结果不是已标定的落地车速。
 
-以下ID及频率均为建议。表中未给出完整类型顺序的消息尚不能直接实现。
+**IMU尚未通过当前实机验收。** 最新后退记录0x21共463帧、334有效，0x22共231帧全部无效，存在总线错误与恢复记录。原始IMU是单位转换后的六轴量，不是芯片整数；姿态参考芯片轴与局部世界坐标，尚无安装变换和绝对航向约束。详见[最新实测与IMU审计](../deps/navbot_body/validation/rear-low-speed.txt)。
 
-| ID | 消息 | 方向 | 数据内容 | 频率 |
-| --- | --- | --- | --- | --- |
-| 0x01 | HELLO/CAPS | 双向 | 协议、固件、板卡、IMU型号、启动标识、能力位、配置摘要 | 建链 |
-| 0x02 | TIME_SYNC | 双向 | 请求编号、主机发送时间、MCU接收/发送时间 | 1Hz |
-| 0x10 | CMD_VEL | 下行 | vx:f32 m/s，wz:f32 rad/s，valid_ms:u16；共10字节 | 50Hz |
-| 0x11 | SET_ENABLE | 下行 | 使能/禁止、请求编号 | 按需，ACK |
-| 0x12 | STOP | 下行 | 停车并锁定运动许可 | 按需，ACK |
-| 0x13 | CLEAR_FAULT | 下行 | 请求编号、故障清除范围 | 按需，ACK |
-| 0x20 | WHEEL_STATE | 上行 | count:i64[4]，omega:f32[4] rad/s，valid:u32；共52字节 | 100Hz |
-| 0x21 | IMU_RAW | 上行 | valid:u32，gyro:f32[3]，accel:f32[3]；共28字节 | 100Hz |
-| 0x22 | ATTITUDE | 上行 | valid:u32，q:f32[4]，顺序x/y/z/w；共20字节 | 可选50Hz |
-| 0x23 | STATUS | 上行 | 电压、状态、故障、最后执行seq、指令年龄、错误计数 | 10Hz及故障触发 |
-| 0x30 | CONFIG_GET | 双向 | 参数版本、键、值、摘要 | 按需 |
-| 0x31 | CONFIG_SET | 下行 | 参数事务与校验 | 禁止运动时，ACK |
-| 0x7F | ACK/NACK | 双向 | 原消息ID、原序号、结果码 | 按需 |
+## 速度命令与停止
 
-IMU_RAW指未经过姿态融合的惯性测量，并非芯片原始整数；是否已做偏置和比例校准应由能力/配置明确。累计编码器计数用于抵抗单帧丢失；MCU重启后重新建立计数基线。
+1. HELLO建立会话并检查固件能力；STOP并等待执行确认。
+2. Disabled状态配置名义几何与实测方向，显式使能。
+3. 持续发送新鲜速度指令，工具约50 Hz；`valid_ms`允许50～250ms，通常200ms。使能后首命令窗口也是200ms。
+4. ACK=0表示入队或STOP切输出，不表示轮速已达到目标；管理请求还应等待0x24的匹配执行结果。
+5. 上位机回调桥接器检查源数据年龄，超过150ms停发旧速度并STOP；不能把旧消息反复续期。
 
-STATUS拟包含：
+实际状态是`Disabled / Enabled / Timeout / Fault`。超时、STOP或故障立即撤销PWM并滑行；普通零目标使用斜坡。超时后需STOP确认、显式使能和新速度；故障锁定需排查后复位初始化。复位不恢复RAM配置和旧运动。软件停止不承诺机械瞬停。
 
-- 电压、PD3输入、运动许可、状态机状态。
-- 指令超时、编码器异常、IMU超时/FIFO异常、控制周期超时。
-- CRC错误、UART溢出、丢帧、发送丢弃计数、MCU复位原因。
-- 最后执行的速度指令序号、指令年龄、传感器有效性。
+当前命令范围：轮速±12rad/s、vx±0.3m/s、wz±1.5rad/s，输出PWM≤20%。范围校验不代表整个范围已经在负载下验证。
 
-电流、荷电百分比、硬件急停状态不作为默认能力；无对应硬件测量时必须标为不支持，不能填写0假装有效。堵转判断只能作为基于轮速/PWM的诊断推断，不能表述为已测得过流。
+## Jetson 获取与测试数据
 
-## 5 带宽预算
+已部署工具目录为`/home/stella/navbot-motion/tools/`，依赖Python3与pyserial。串口由单个进程统一收发；采集与运动工具不能同时占用。新会话会停止旧运动，采集工具不应作为运动进程旁路打开第二个连接。
 
-按8N1每字节10bit计算：
+静止遥测验证，不使能电机：
 
-| 数据 | 线速预算 |
-| --- | --- |
-| WHEEL_STATE 100Hz | (24+52)×100×10 = 76000 bit/s |
-| IMU_RAW 100Hz | (24+28)×100×10 = 52000 bit/s |
-| ATTITUDE 50Hz | (24+20)×50×10 = 22000 bit/s |
-| CMD_VEL 50Hz | (24+10)×50×10 = 17000 bit/s，下行 |
+```sh
+python3 /home/stella/navbot-motion/tools/chassis_serial.py \
+  --port /dev/serial/by-id/usb-1a86_USB_Single_Serial_5A6D001621-if00 \
+  --seconds 10 \
+  --output /home/stella/navbot-motion/results/telemetry-check
+```
 
-基础上行即128kbit/s，超过115200；建议460800。加入STATUS、配置、重试后需复核队列和峰值预算。全双工上下行分别计算，不能仅凭总和判断饱和。遥测拥塞时丢弃旧快照并计数，不得阻塞控制任务。
+工具先等待姿态就绪，成功后保存`frames.jsonl`逐帧记录和`report.json`验证报告；IMU未就绪可能提前失败，此时以报告错误为准。不要添加旧台架专用`--test`；运动协议边界检查使用`motion_protocol_test.py`。
 
-## 6 时间与有效性
+已确认架空、允许电机旋转时，可执行短时车体速度测试：
 
-- MCU维护64位单调微秒时钟，区分采样、读取和发送时刻；FIFO积压不能统一标为发送时间。
-- 时间同步采用主机发送t1、MCU接收t2、MCU发送t3、主机接收t4；估计偏移和往返时延，过滤高延迟样本并跟踪漂移。
-- Jetson映射为ROS时间；系统时钟跳变需重新建立映射。USB到达时间不能直接代替采样时间。
-- 每次MCU重启更换启动标识；会话改变时清理旧命令和未完成事务。
-- 新数据失败时置无效，不能继续将旧样本标为新鲜；独立报告轮速与IMU有效性。
-- ROS姿态不可用时设置orientation_covariance[0]=-1；其余协方差通过噪声测试确定，不能用全零声称无误差。[R3]
+```sh
+python3 /home/stella/navbot-motion/tools/motion_host.py \
+  --port /dev/serial/by-id/usb-1a86_USB_Single_Serial_5A6D001621-if00 \
+  --mode body --signs 1 -1 -1 1 --vx 0 --wz 0.6 \
+  --seconds 3 --timeout \
+  --output /home/stella/navbot-motion/results/body-turn.json
+```
 
-## 7 状态机与停车规则
+该命令会驱动电机；结束后检查命令超时并发送STOP。`--seconds`是发送指令的时长，使用`--timeout`时另有末条租期和机械滑行时间。测试报告包含上报帧、换算车体速度、错误计数和最终状态；运动测试通过不代表IMU有效性通过。
 
-建议状态：DISABLED、READY、ACTIVE、STOPPING、FAULT。READY表示配置与握手有效但未允许运动；ACTIVE才可执行非零目标。
-
-1. 上电、USB重连和MCU复位均禁止运动，重新握手、核验配置并显式使能。
-2. 运动超时初值200ms，valid_ms不能超过固件允许上限；上限及最小值待冻结。
-3. 只有当前会话、序号新鲜、校验正确且参数合法的速度指令刷新超时。
-4. 心跳、配置和查询不得刷新运动许可。Jetson必须检查上游cmd_vel年龄，禁止持续重发过期非零命令。
-5. 超时进入STOPPING，采用已验证减速度停车后禁止；不可控故障进入FAULT并使用已验证的安全输出。
-6. STOP锁定运动许可；通信恢复和CLEAR_FAULT均不自动重启运动。
-7. 故障条件未消除时拒绝清除或使能；停机清理PI状态和旧目标。
-8. 速度命令不重传旧值；通过STATUS中的执行序号观测。配置命令使用ACK与幂等事务，重试不能重复产生副作用。
-
-硬件急停路径尚未确认。软件STOP和PD3输入不能替代独立硬件断能。停车时选择制动还是滑行、斜坡退出时机和欠压处理需结合AT8236、电池和实测决定。
-
-## 8 编码前必须冻结
-
-- HELLO请求/响应布局、会话分配及确认流程、启动标识生成方法。
-- 序号回绕比较、重复消息策略、未知版本/ID行为。
-- CMD_VEL是按接收时刻计有效期还是同步时钟截止时间；如何拒绝USB/主机队列中的延迟旧指令。仅序号新鲜不足以证明时效。
-- 所有剩余消息的字段顺序、长度、枚举、有效位、故障位和结果码。
-- 状态迁移表、STOP与SET_ENABLE(false)差异、停车输出和故障优先级。
-- 参数事务原子性、CRC/摘要算法、掉电一致性、Flash写入限制和恢复默认策略。
-- 四元数参考系、可用性标准、协方差、磁力计是否启用。
-- 同步误差、指令延迟、解析超时、丢包与控制抖动的量化验收阈值。
-- 黄金报文和错误报文样本，包括CRC及边界值。
-
-## 9 外部参考
-
-- R1 [REP-103单位与坐标](https://github.com/openrobotics/reps/blob/main/_posts/rep-0103.md)
-- R2 [Nav2 Jazzy里程计融合](https://ros-navigation.github.io/mkdocs.nav2.org/jazzy/configuration_and_development/first_time_robot_setup_guide/odom/setup_robot_localization/)
-- R3 [ROS Imu消息定义](https://github.com/ros2/common_interfaces/blob/rolling/sensor_msgs/msg/Imu.msg)
-
-引用用于架构和消息语义；实际依赖需锁定到安装的Jazzy版本，不能直接把rolling分支作为项目依赖版本。
+应用接入可复用[Client编解码](../deps/navbot_body/tools/chassis_serial.py)及[VelocityBridge](../deps/navbot_body/tools/motion_host.py)，保留其上游时效检查。正式ROS适配与后续标定见[实施计划](implementation-plan.md)。
